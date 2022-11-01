@@ -4,9 +4,11 @@ COMMUNICATION CONTRACT
 
 How to REQUEST & RECEIVE Data from the Microservice
 
+As a general overview, the microservice works by receiving a search term (e.g., '401(k)') as a string from your individual project. The microservice then calls the English Wikipedia Search API to receive data in response in a JSON format that contains the title of the Wikipedia article for '401(k)' and the content of the introduction section. This data in a JSON format is then returned to your individual project.
+
 The microservice communicates between server and client using ZeroMQ sockets (https://zeromq.org/). Because your individual project (i.e., the client) is running on Node.js and the microservice (i.e., the server) is coded in Python, ZeroMQ was chosen as a communication pipe to allow the two programs to communicate with each other.
 
-As a general overview, the microservice works by receiving a search term (e.g., '401(k)') as a string from your individual project. The microservice then calls the English Wikipedia Search API to receive data in response in a JSON format that contains the title of the Wikipedia article for '401(k)' and the content of the introduction section. This data in a JSON format is then returned to your individual project.
+The microservice program is contained within a single .py file that was coded in Python 3.10. You can run the microservice program in a command line interpreter application, such as Command Prompt, by entering "python" or "python3" followed by the path to the .py file. The microservice program relies on two published libraries to run: ZeroMQ (https://zeromq.org/languages/python/) and requests (https://pypi.org/project/requests/). Both libraries will need to be installed prior to running the microservice program. The microservice program needs to be active and running in order to receive calls from your individual project.
 
 The first step for requesting data from the microservice is to install ZeroMQ for Node (https://zeromq.org/languages/nodejs/). The provided link provides some instruction, but you will likely need to navigate to the root folder containing the files for your program, and enter some variation of "npm install zeromq@5" into your console.
 
@@ -58,4 +60,6 @@ After receiving the raw data from the microservice/server and converting it to a
 Possible area for troubleshooting: Data is sent as bytes from the client to the server, and vice versa. Correspondingly, data may need to be converted from string to bytes when sending data to the server, and converted from bytes to JSON when using the data received from the server. I believe the example code above handles this, but I wanted to leave this troubleshooting note for future consideration.
 
 UML sequence diagram
+
+![UML drawio](https://user-images.githubusercontent.com/91583603/199153284-9fef73dd-cb04-4fae-a28d-ddf1a91c5fcf.svg)
 

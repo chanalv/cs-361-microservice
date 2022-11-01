@@ -4,7 +4,7 @@ COMMUNICATION CONTRACT
 
 How to REQUEST & RECEIVE Data from the Microservice
 
-As a general overview, the microservice works by receiving a search term (e.g., '401(k)') as a string from your individual project. The microservice then calls the English Wikipedia Search API to receive data in response in a JSON format that contains the title of the Wikipedia article for '401(k)' and the content of the introduction section. This data in a JSON format is then returned to your individual project.
+As a general overview, the microservice works by receiving a search term (e.g., '401(k)') as a string from your individual project. The microservice then calls the English Wikipedia Search API using the provided search term to receive data in response in a JSON format that contains the title of the Wikipedia article for '401(k)' and the content of the introduction section. This data in a JSON format is then returned to your individual project.
 
 The microservice communicates between server and client using ZeroMQ sockets (https://zeromq.org/). Because your individual project (i.e., the client) is running on Node.js and the microservice (i.e., the server) is coded in Python, ZeroMQ was chosen as a communication pipe to allow the two programs to communicate with each other.
 

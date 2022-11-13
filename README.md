@@ -10,7 +10,7 @@ The microservice communicates between server and client using ZeroMQ sockets (ht
 
 The microservice program is contained within a single .py file that was coded in Python 3.10. You can run the microservice program in a command line interpreter application, such as Command Prompt, by entering "python" or "python3" followed by the path to the .py file. The microservice program relies on two published libraries to run: ZeroMQ (https://zeromq.org/languages/python/) and requests (https://pypi.org/project/requests/). Both libraries will need to be installed prior to running the microservice program. The microservice program needs to be active and running in order to receive calls from your individual project.
 
-The first step for requesting data from the microservice is to install ZeroMQ for Node (https://zeromq.org/languages/nodejs/). The provided link provides some instruction, but you will likely need to navigate to the root folder containing the files for your program, and enter some variation of "npm install zeromq@5" into your console.
+The first step for requesting data from the microservice is to install ZeroMQ for Node (https://zeromq.org/languages/nodejs/). The provided link provides some instruction, but you will likely need to navigate to the root folder containing the files for your program, and enter some variation of "npm install zeromq@6.0.0-beta.6" into your console.
 
 The next step is wherever in your program you want to request data from the microservice, you want to open a ZeroMQ client socket and then connect with the server socket. ZeroMQ provides the following documentation for getting started:
 https://zeromq.org/get-started/?language=nodejs&library=zeromqjs#
@@ -31,7 +31,7 @@ Here is an example of how you can modify the example code to make a call to the 
 
 		await sock.send('401(k)');
 		const [result] = await sock.receive();
-		console.log(result.toJSON());
+		console.log(JSON.parse(result));
 		}
 	}
 
@@ -39,7 +39,7 @@ Here is an example of how you can modify the example code to make a call to the 
 
 In this example call, the line
 		
-	await sock.send('401k)');
+	await sock.send('401(k))');
 
 will send the search term '401(k)' to the microservice/server. You can modify this string to send different search terms to the microservice/server.
 
